@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "frontend_web_lb" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  source_security_group_id = var.web_lb_sg_id
+  source_security_group_id = var.web_alb_sg_id
   security_group_id = var.frontend_sg_id
 }
 # web loadbalancer allow connections on 80/443 port from users(internet)
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "web_lb_public" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks      = [join("", var.internet_user)]
-  security_group_id = var.web_lb_sg_id
+  security_group_id = var.web_alb_sg_id
 }
 
 #  mysql server allow connections on 3306 port from the bastion host 

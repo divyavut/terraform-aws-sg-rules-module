@@ -25,7 +25,7 @@ variable "app_lb_sg_id" {
     type = string
     default = ""
 }
-variable "web_lb_sg_id" {
+variable "web_alb_sg_id" {
     type = string
     default = ""
 }
