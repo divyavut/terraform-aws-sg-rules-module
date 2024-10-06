@@ -98,6 +98,15 @@ resource "aws_security_group_rule" "frontend_bastion_80" {
   source_security_group_id = var.bastion_sg_id
   security_group_id = var.frontend_sg_id
 }
+#  bastion server allow connections on 22 port from the public
+resource "aws_security_group_rule" "bastion_public" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks      = [join("", var.internet_user)]
+  security_group_id = var.bastion_sg_id
+}
 
 resource "aws_security_group_rule" "backend_ansible" {
   type              = "ingress"
