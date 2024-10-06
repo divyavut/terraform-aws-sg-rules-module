@@ -21,3 +21,11 @@ variable "ansible_sg_id" {
     type = string
     default = ""
 }
+variable "app_lb_sg_id" {
+    type = string
+    default = ""
+}
+variable "web_lb_sg_id" {
+    type = string
+    default = ""
+}
