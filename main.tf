@@ -162,7 +162,7 @@ resource "aws_security_group_rule" "vpn_public_1194" {
   security_group_id = var.vpn_sg_id
 }
 # application load balancer allow connections on 80 port from vpn
-resource "aws_security_group_rule" "app_lb_bastion" {
+resource "aws_security_group_rule" "app_lb_vpn" {
   type              = "ingress"
   from_port         = 80
   to_port           = 80
