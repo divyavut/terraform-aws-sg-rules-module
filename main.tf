@@ -161,6 +161,15 @@ resource "aws_security_group_rule" "vpn_public_1194" {
   cidr_blocks      = [join("", var.internet_user)]
   security_group_id = var.vpn_sg_id
 }
+# application load balancer allow connections on 80 port from vpn
+resource "aws_security_group_rule" "app_lb_bastion" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  source_security_group_id = var.vpn_sg_id
+  security_group_id = var.app_lb_sg_id
+}
 
 # # allow connections on 22 port from the public host to ansible server
 # resource "aws_security_group_rule" "ansible_public" {
