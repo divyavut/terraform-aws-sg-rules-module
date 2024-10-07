@@ -125,6 +125,42 @@ resource "aws_security_group_rule" "frontend_ansible" {
   source_security_group_id = var.ansible_sg_id
   security_group_id = var.frontend_sg_id
 }
+# vpn allow connections on 22 port from the public
+resource "aws_security_group_rule" "vpn_public" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+   cidr_blocks      = [join("", var.internet_user)]
+  security_group_id = var.vpn_sg_id
+}
+# vpn allow connections on 443 port from the public
+resource "aws_security_group_rule" "vpn_public_443" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks      = [join("", var.internet_user)]
+  security_group_id = var.vpn_sg_id
+}
+# vpn allow connections on 943 port from the public
+resource "aws_security_group_rule" "vpn_public_943" {
+  type              = "ingress"
+  from_port         = 943
+  to_port           = 943
+  protocol          = "tcp"
+  cidr_blocks      = [join("", var.internet_user)]
+  security_group_id = var.vpn_sg_id
+}
+# vpn allow connections on 1194 port from the public
+resource "aws_security_group_rule" "vpn_public_1194" {
+  type              = "ingress"
+  from_port         = 1194
+  to_port           = 1194
+  protocol          = "tcp"
+  cidr_blocks      = [join("", var.internet_user)]
+  security_group_id = var.vpn_sg_id
+}
 
 # # allow connections on 22 port from the public host to ansible server
 # resource "aws_security_group_rule" "ansible_public" {

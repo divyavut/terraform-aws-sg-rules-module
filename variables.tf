@@ -29,3 +29,7 @@ variable "web_alb_sg_id" {
     type = string
     default = ""
 }
+variable "vpn_sg_id" {
+    type = string
+    default = ""
+}
