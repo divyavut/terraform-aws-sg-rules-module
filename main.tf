@@ -170,7 +170,25 @@ resource "aws_security_group_rule" "app_lb_vpn" {
   source_security_group_id = var.vpn_sg_id
   security_group_id = var.app_lb_sg_id
 }
+# backend allow connections on 80 port from vpn
+resource "aws_security_group_rule" "backend_vpn" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = var.vpn_sg_id
+  security_group_id = var.backend_sg_id
+}
 
+# backend allow connections on 8080 port from vpn
+resource "aws_security_group_rule" "backend_vpn_8080" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  source_security_group_id = var.vpn_sg_id
+  security_group_id = var.backend_sg_id
+}
 # # allow connections on 22 port from the public host to ansible server
 # resource "aws_security_group_rule" "ansible_public" {
 #   type              = "ingress"
